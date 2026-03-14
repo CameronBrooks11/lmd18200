@@ -1,0 +1,23 @@
+{
+  "name": "LMD18200",
+  "version": "0.1.1",
+  "description": "A library to control the Texas Instruments LMD18200 3A, 55V H-Bridge motor driver IC. Supports speed/direction control, active braking, current sensing, and thermal warning monitoring.",
+  "keywords": ["motor", "h-bridge", "motor-driver", "lmd18200", "pwm", "dc-motor"],
+  "authors": [
+    {
+      "name": "Cameron Brooks",
+      "email": "cbrook49@uwo.ca",
+      "maintainer": true
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CameronBrooks11/lmd18200"
+  },
+  "license": "MIT",
+  "frameworks": "arduino",
+  "platforms": "*",
+  "export": {
+    "include": "src"
+  }
+}

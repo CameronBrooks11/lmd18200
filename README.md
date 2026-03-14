@@ -12,10 +12,19 @@ This Arduino library provides an easy-to-use interface for controlling the Texas
 
 ## Installation
 
-In the future the goal is to submit to be added to the official Arduino library index...but until then:
+### PlatformIO
+
+Add to your `platformio.ini`:
+
+```ini
+lib_deps =
+    CameronBrooks11/LMD18200
+```
+
+### Arduino IDE
 
 1. Download or clone the repository.
-2. Copy the `LMD18200_Arduino` folder into your Arduino libraries directory.
+2. Copy the `lmd18200` folder into your Arduino libraries directory.
 3. Restart the Arduino IDE.
 4. Open an example sketch from the **File > Examples** menu to get started.
 
