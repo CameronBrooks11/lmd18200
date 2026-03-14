@@ -1,8 +1,15 @@
 /*
-  BasicDemo.ino - Non-blocking demo using millis() for the LMD18200 motor driver.
-  This example ramps the motor speed up and down, applies a brake,
-  and continuously monitors motor current and thermal status with CSV serial feedback.
-  Type "stop" (followed by ENTER) on the Serial monitor at any time to trigger an emergency stop.
+  RampAndBrake.ino - Non-blocking demo using millis() for the LMD18200 motor driver.
+
+  Ramps the motor speed up (0 -> 255) then down (255 -> 0), applies active braking,
+  and repeats. Current draw and thermal flag are reported over Serial in CSV format.
+
+  Open the Serial Monitor at 115200 baud.
+  Type "stop" (followed by ENTER) at any time to trigger an emergency stop.
+
+  Compatible with Arduino IDE and PlatformIO (see platformio.ini in this folder).
+  NOTE: Pin A6 is only available on boards with that analog pin (e.g. Arduino Nano/Mega).
+        Change MOTOR_CSENSE_PIN to another analog pin if using a different board.
 */
 
 #include <LMD18200.h>
@@ -19,7 +26,7 @@ const float RESISTOR_VALUE = 4420; // 4.42k ohm resistor for current sense
 // Instantiate the motor driver
 LMD18200 motor(MOTOR_PWM_PIN, MOTOR_DIR_PIN, MOTOR_BRAKE_PIN, MOTOR_CSENSE_PIN, MOTOR_TFLAG_PIN);
 
-// Define demo states (MONITOR state removed for continuous sensing)
+// Demo states
 enum DemoState
 {
     RAMP_UP,
@@ -33,10 +40,10 @@ unsigned long lastUpdateTime = 0;
 unsigned long lastFeedbackTime = 0;
 int currentSpeed = 0;
 
-const int rampStep = 5;                     // Speed increment/decrement
-const unsigned long rampInterval = 200;     // 50 ms between speed updates
-const unsigned long brakeDuration = 5000;   // Brake duration (2000 ms)
-const unsigned long feedbackInterval = 100; // Feedback every 200 ms
+const int rampStep = 5;                     // Speed increment/decrement per rampInterval
+const unsigned long rampInterval = 200;     // ms between each speed step
+const unsigned long brakeDuration = 5000;   // ms to hold the brake before next ramp
+const unsigned long feedbackInterval = 100; // ms between CSV serial prints
 
 // Check for emergency stop command from Serial.
 void checkSerialCommand()
@@ -78,7 +85,7 @@ void setup()
 {
     Serial.begin(115200);
     motor.begin();
-    Serial.println("LMD18200 Basic Demo - Non Blocking");
+    Serial.println("LMD18200 Ramp-and-Brake Demo");
     stateStartTime = millis();
     lastUpdateTime = millis();
     lastFeedbackTime = millis();

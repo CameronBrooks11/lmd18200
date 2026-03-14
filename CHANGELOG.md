@@ -10,12 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `library.json` PlatformIO manifest enabling `pio pkg publish` to the PlatformIO registry.
 - PlatformIO `lib_deps` installation snippet in README.
+- `examples/RampAndBrake/platformio.ini` — ready-to-use PlatformIO project config for the example (targets: `uno`, `nano`, `due`).
 
 ### Changed
 
 - Repository renamed from `LMD18200_Arduino` to `lmd18200`.
 - Updated `url` in `library.properties` to reflect new repository name.
 - Cleaned up README installation section with separate Arduino IDE and PlatformIO instructions.
+- Renamed example `BasicDemo` → `RampAndBrake` (folder and `.ino`) to better describe the demo behaviour; Arduino IDE requires the `.ino` name to match its parent folder.
+- Fixed stale inline comments in the example (incorrect ms values in `rampInterval`, `brakeDuration`, and `feedbackInterval` comments).
+- Updated Serial print banner to match new example name.
 
 ## [0.1.0] - 2025-01-01
 
