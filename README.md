@@ -34,4 +34,4 @@ lib_deps =
 
 ## Author
 
-Cameron K. Brooks – [cbrook49@uwo.ca](mailto:cbrook49@uwo.ca)
+Cameron K. Brooks – [cambrooks3393@gmail.com](mailto:cambrooks3393@gmail.com)
