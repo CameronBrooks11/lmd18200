@@ -24,7 +24,7 @@ void LMD18200::begin()
     }
     if (_thermalFlagPin != 255)
     {
-        pinMode(_thermalFlagPin, INPUT_PULLUP); // Assuming active-low output
+        pinMode(_thermalFlagPin, INPUT_PULLUP); // Active-low per datasheet (pin 9)
     }
 }
 

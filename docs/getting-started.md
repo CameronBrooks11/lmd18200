@@ -8,7 +8,7 @@ Add to `platformio.ini`:
 
 ```ini
 lib_deps =
-    CameronBrooks11/LMD18200@^0.1.1
+    CameronBrooks11/LMD18200@^0.1.2
 ```
 
 ### Arduino IDE

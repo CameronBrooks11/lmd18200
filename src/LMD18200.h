@@ -7,12 +7,13 @@
  * @brief LMD18200 class to control the LMD18200 motor driver IC.
  *
  * This class supports basic motor control functions:
- * - setSpeed(): Adjust motor speed and direction using sign/magnitude PWM.
+ * - write(): Adjust motor speed and direction using sign/magnitude PWM.
  * - brake(): Activates an active braking mode.
  * - readCurrent(): Reads the current sense voltage and calculates the motor current.
  * - isThermalWarning(): Checks the thermal flag status.
  *
- * Datasheet Reference: LMD18200 3A, 55V H-Bridge (Rev. F) :contentReference[oaicite:2]{index=2}
+ * Datasheet Reference: LMD18200 3A, 55V H-Bridge (Rev. F)
+ * https://www.ti.com/lit/ds/symlink/lmd18200.pdf
  */
 class LMD18200
 {
