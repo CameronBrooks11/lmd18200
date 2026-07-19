@@ -17,6 +17,7 @@ void LMD18200::begin()
 
     // Initialize brake in released state
     digitalWrite(_brakePin, LOW);
+    _braked = false;
 
     if (_currentSensePin != 255)
     {
@@ -52,14 +53,27 @@ void LMD18200::write(int16_t speed)
 
 void LMD18200::brake()
 {
+    // Idempotent so per-iteration safe-state holds don't retoggle the pins
+    // (a release/re-engage cycle every loop pass is audible as a squeal and
+    // stresses the driver).
+    if (_braked)
+    {
+        return;
+    }
     // According to datasheet, to brake: set brake pin HIGH and set PWM high.
     digitalWrite(_brakePin, HIGH);
     analogWrite(_pwmPin, 255);
+    _braked = true;
 }
 
 void LMD18200::releaseBrake()
 {
+    if (!_braked)
+    {
+        return;
+    }
     digitalWrite(_brakePin, LOW);
+    _braked = false;
 }
 
 float LMD18200::readCurrent(float senseResistor)

@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - 2026-07-18
+
+### Fixed
+
+- `brake()` and `releaseBrake()` are now idempotent (state-tracked): repeated
+  `brake()` calls while already braked perform no pin writes. Previously a
+  control loop holding a safe state by calling `write(0)` + `brake()` every
+  iteration toggled the brake pin and PWM at loop frequency — audible as a
+  motor squeal and needless switching stress (found live on the BREAD bench
+  during Slice_DCMT watchdog-trip hold, feastorg/Slice_DCMT#6).
+
 ## [0.1.3] - 2026-03-14
 
 ### Fixed

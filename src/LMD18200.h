@@ -44,11 +44,16 @@ public:
 
     /**
      * @brief Activate the brake.
+     *
+     * Idempotent: repeated calls while already braked perform no pin writes,
+     * so control loops may call this every iteration to hold a safe state.
      */
     void brake();
 
     /**
      * @brief Release the brake.
+     *
+     * Idempotent: a no-op when the brake is not engaged.
      */
     void releaseBrake();
 
@@ -75,6 +80,7 @@ private:
     uint8_t _brakePin;
     uint8_t _currentSensePin;
     uint8_t _thermalFlagPin;
+    bool _braked = false;
 };
 
 #endif
