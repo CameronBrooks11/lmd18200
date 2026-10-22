@@ -11,7 +11,7 @@ target_include_directories(lmd18200 PUBLIC ../src fakes)
 target_compile_options(lmd18200 PRIVATE -Wall -Wextra)
 
 enable_testing()
-foreach(name test_smoke)
+foreach(name test_release_order test_smoke)
   add_executable(${name} ${name}.cpp)
   target_link_libraries(${name} PRIVATE lmd18200)
   add_test(NAME ${name} COMMAND ${name})

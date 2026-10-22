@@ -59,7 +59,7 @@ Activates active braking: sets the brake pin HIGH and drives PWM to 255 (per dat
 void releaseBrake()
 ```
 
-Releases the brake (sets brake pin LOW). Called automatically by `write()`.
+Releases the brake: sets PWM LOW, then the brake pin LOW, so the bridge never passes through full drive in the last direction. Called automatically by `write()`.
 
 ---
 

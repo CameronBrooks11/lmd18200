@@ -72,6 +72,9 @@ void LMD18200::releaseBrake()
     {
         return;
     }
+    // PWM low first: BRAKE low with PWM still high is full drive in the last
+    // direction. This way the bridge goes all off, then brakes, never drives.
+    analogWrite(_pwmPin, 0);
     digitalWrite(_brakePin, LOW);
     _braked = false;
 }
