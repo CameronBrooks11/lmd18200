@@ -43,8 +43,8 @@ The default `analogWrite()` frequency on AVR boards (~490 Hz on most pins, ~980 
 
 ## 3.3 V Systems
 
-`readCurrent()` assumes a 5 V ADC reference. If using a 3.3 V board (e.g. ARM-based Arduino), change the `5.0` constant in `LMD18200.cpp` to `3.3`:
+`readCurrent()` defaults to a 5 V reference and a 10-bit ADC. On a 3.3 V board (e.g. ARM-based Arduino), pass the reference and full-scale count:
 
 ```cpp
-float voltage = (adcValue / 1023.0) * 3.3;
+float amps = motor.readCurrent(SENSE_RESISTOR, 3.3, 1023); // or 4095 after analogReadResolution(12)
 ```
