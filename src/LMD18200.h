@@ -62,10 +62,15 @@ public:
      * @brief Read the current from the current sense output.
      *
      * The method reads the analog value, converts it to a voltage, and calculates the motor current.
+     * It uses the datasheet's typical sense ratio of 377 µA/A. The minimum is 325 µA/A (300 over
+     * temperature) and linearity is ±6 % (±9 % over temperature) from 1 to 3 A, so treat the result
+     * as an estimate. The sense output covers sourcing current only.
      * @param senseResistor The value of the resistor used between the current sense pin and ground (in ohms).
+     * @param vref ADC reference voltage (V).
+     * @param adcMax ADC full-scale count, e.g. 4095 after analogReadResolution(12).
      * @return float Motor current in Amperes.
      */
-    float readCurrent(float senseResistor);
+    float readCurrent(float senseResistor, float vref = 5.0, int adcMax = 1023);
 
     /**
      * @brief Check if a thermal warning is active.

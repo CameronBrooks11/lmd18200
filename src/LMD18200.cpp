@@ -79,15 +79,15 @@ void LMD18200::releaseBrake()
     _braked = false;
 }
 
-float LMD18200::readCurrent(float senseResistor)
+float LMD18200::readCurrent(float senseResistor, float vref, int adcMax)
 {
     if (_currentSensePin == 255)
     {
         return 0.0;
     }
-    // Read the analog voltage from current sense pin (assume 10-bit ADC and 5V reference)
+    // Read the analog voltage from current sense pin
     int adcValue = analogRead(_currentSensePin);
-    float voltage = (adcValue / 1023.0) * 5.0;
+    float voltage = ((float)adcValue / adcMax) * vref;
 
     // The current sense output has a sensitivity of 377 µA per Ampere.
     // The voltage across the resistor: V = I_motor * 377e-6 * senseResistor.

@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `readCurrent()` takes the ADC reference voltage and full-scale count,
+  defaulting to the previous 5 V and 1023, and documents the sense
+  ratio's tolerance and that it covers sourcing current only (#2)
+
 ### Fixed
 
 - `releaseBrake()`, and so `write()` after `brake()`, sets PWM low before

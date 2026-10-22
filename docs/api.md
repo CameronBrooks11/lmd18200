@@ -63,10 +63,10 @@ Releases the brake: sets PWM LOW, then the brake pin LOW, so the bridge never pa
 
 ---
 
-### `readCurrent(senseResistor)`
+### `readCurrent(senseResistor, vref, adcMax)`
 
 ```cpp
-float readCurrent(float senseResistor)
+float readCurrent(float senseResistor, float vref = 5.0, int adcMax = 1023)
 ```
 
 Reads motor current via the current sense output (IC pin 8).
@@ -74,6 +74,8 @@ Reads motor current via the current sense output (IC pin 8).
 | Parameter       | Type    | Description                                 |
 | --------------- | ------- | ------------------------------------------- |
 | `senseResistor` | `float` | Resistance (Ω) of the sense resistor to GND |
+| `vref`          | `float` | ADC reference voltage (V), default 5.0      |
+| `adcMax`        | `int`   | ADC full-scale count, default 1023          |
 
 **Returns:** Motor current in Amperes, or `0.0` if `currentSensePin` was not set.
 
@@ -82,7 +84,9 @@ The IC outputs 377 µA per ampere of motor current. With a sense resistor $R_S$:
 
 $$I_{motor} = \frac{V_{sense}}{R_S \times 377 \times 10^{-6}}$$
 
-Assumes a 10-bit ADC with a 5 V reference. For 3.3 V systems, adjust the 5.0 V constant in the source.
+$V_{sense}$ is the ADC reading scaled by `vref / adcMax`. On a 3.3 V board with `analogReadResolution(12)`, call `readCurrent(rs, 3.3, 4095)`.
+
+377 µA/A is the datasheet's typical ratio. The minimum is 325 µA/A (300 over temperature) and linearity is ±6 % (±9 % over temperature) from 1 to 3 A, so treat the result as an estimate. The sense output covers sourcing current only.
 
 ---
 
