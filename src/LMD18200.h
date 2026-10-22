@@ -53,7 +53,8 @@ public:
     /**
      * @brief Release the brake.
      *
-     * Idempotent: a no-op when the brake is not engaged.
+     * Sets PWM low before BRAKE, so the motor is left undriven rather than
+     * at full drive. Idempotent: a no-op when the brake is not engaged.
      */
     void releaseBrake();
 
