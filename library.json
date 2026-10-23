@@ -1,6 +1,6 @@
 {
     "name": "LMD18200",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "A library to control the Texas Instruments LMD18200 3A, 55V H-Bridge motor driver IC. Supports speed/direction control, active braking, current sensing, and thermal warning monitoring.",
     "keywords": [
         "motor",

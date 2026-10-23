@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2026-10-23
+
+Bench-checked on a gen2 Slice_DCMT board (Nano Every) against a DC ammeter:
+`readCurrent()` reads 0.322 A at full drive against 0.330 to 0.337 A on the
+meter, and 0.045 A at zero current (#6).
+[Record](https://github.com/feastorg/Slice_DCMT/blob/main/docs/bench/2026-10-22-applied-pwm-and-library-fixes.md).
+
 ### Added
 
 - `readCurrent()` takes the ADC reference voltage and full-scale count,
